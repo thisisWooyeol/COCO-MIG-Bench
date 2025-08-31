@@ -60,13 +60,14 @@ Yet, for AIBL's specific use case, we modify the prompts and layouts in `jsonl` 
 }
 ```
 
-Level should be equal to the number of phrases (i.e., the number of distinct objects). We use the automatic conversion script `dev/convert_mig_bench_to_jsonl.py` to facilitate this process.
+Level should be equal to the number of phrases (i.e., the number of distinct objects). We used the automatic conversion script `dev/convert_mig_bench_to_jsonl.py` to facilitate this process.
 
 ```bash
 python dev/convert_mig_bench_to_jsonl.py
 ```
 
-We expect to generate images with `mig_bench.jsonl` dataset. The generated images should be contained in a single folder and should follow the naming convention: `<prompt_idx>_<itr>_<level>_<prompt>.[png|jpg]`.
+This outputs `data/mig_bench.jsonl`, which we already created.
+We expect to generate images with `data/mig_bench.jsonl` dataset. The generated images should be contained in a single folder and should follow the naming convention: `<prompt_idx>_<itr>_<level>_<prompt>.[png|jpg]`.
 
 ### Step 2 Evaluation
 
