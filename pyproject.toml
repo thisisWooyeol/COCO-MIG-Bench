@@ -1,0 +1,36 @@
+[project]
+name = "migbench"
+description = "The MIG benchmark of CVPR2024 MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis"
+version = "0.1.0"
+requires-python = "==3.12.*"
+maintainers = [
+    { name = "Wooyeol Lee", email = "wooyeol0519@snu.ac.kr" }
+]
+dependencies = [
+    "groundingdino-py==0.4.0",
+    "torch==2.6.0",
+    "torchvision==0.21.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch =  { index = "pytorch_cu124" }
+
+[[tool.uv.index]]
+name = "pytorch_cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
