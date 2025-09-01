@@ -88,8 +88,10 @@ If you want to bypass the image generation step and use existing images, you can
 
 ```bash
 unzip migc_output.zip
+mkdir -p example/
 mv infer_coco_mig_check/ example/
-python dev/convert_filenames.py --image-dir ./example/infer_coco_mig_check --dataset ./data/mig_bench.jsonl
+
+python dev/convert_filenames.py --image-dir ./example/infer_coco_mig_check --dataset ./data/mig_bench.jsonl --no-dry-run
 ```
 
 Now you can test evaluation as follows:
