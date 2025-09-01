@@ -570,6 +570,14 @@ class MIGBenchEvaluator:
             self.metrics.success_record += 1
             self.metrics.success_level_record[level] += 1
 
+        # Log intermediate success_level_ratio values
+        current_success_level_ratio = [
+            self.metrics.success_level_record[i] / max(self.metrics.success_level_count[i], 1) for i in range(5)
+        ]
+        logger.debug(
+            f"Image success level {level}: success={success}, Running avg per level: {[f'{x:.4f}' for x in current_success_level_ratio]}"
+        )
+
     def _evaluate_local_clip(self, image: np.ndarray, gt_instance: dict[str, Any], label: str):
         """Evaluate local CLIP score for a cropped object."""
         bbox = gt_instance["bbox"]
@@ -583,6 +591,14 @@ class MIGBenchEvaluator:
                 local_clip_score = self.calculate_clip_score(cropped_image, label, use_templates=True)
                 self.metrics.local_clip_record += local_clip_score
                 self.metrics.local_clip_count += 1
+
+                logger.debug(
+                    f"Local CLIP score for '{label}': {local_clip_score:.4f}, Running avg: {self.metrics.local_clip_record / self.metrics.local_clip_count:.4f}"
+                )
+            else:
+                logger.debug(f"Empty cropped image for '{label}', skipping local CLIP evaluation")
+        else:
+            logger.debug(f"Invalid bbox for '{label}': [{x1}, {y1}, {x2}, {y2}], skipping local CLIP evaluation")
 
     def run_evaluation(self) -> dict[str, Any]:
         """Run the complete evaluation pipeline."""
@@ -696,7 +712,9 @@ def main():
             print(f"{key}: {value}")
 
     # Save results to file
-    output_file = f"./output/metric_{args.metric_name}.json"
+    output_dir = "./output"
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = f"{output_dir}/metric_{args.metric_name}.json"
     with open(output_file, "w") as f:
         json.dump(results, f, indent=2)
 
