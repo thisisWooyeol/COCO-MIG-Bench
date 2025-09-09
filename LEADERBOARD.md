@@ -76,6 +76,26 @@ We additionally reported time and VRAM usage for each method in float32 precisio
       <td>-</td>
     </tr>
     <tr>
+      <td><a>SD3.5-M</a></td>
+      <td>SD3.5-M</td>
+      <td>8.047</td>
+      <td>8.464</td>
+      <td>6.074</td>
+      <td>5.016</td>
+      <td>4.401</td>
+      <td>5.863</td>
+      <td>21.57</td>
+      <td>21.37</td>
+      <td>18.98</td>
+      <td>17.39</td>
+      <td>17.80</td>
+      <td>18.85</td>
+      <td>26.41</td>
+      <td>18.77</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
       <td colspan="18" style="text-align: center; font-weight: bold;">Adapter rendering methods</td>
     </tr>
     <tr>
