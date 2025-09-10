@@ -96,6 +96,26 @@ We additionally reported time and VRAM usage for each method in float32 precisio
       <td>-</td>
     </tr>
     <tr>
+      <td><a>Flux.1-dev</a></td>
+      <td>Flux.1-dev</td>
+      <td>8.828</td>
+      <td>7.500</td>
+      <td>4.863</td>
+      <td>4.531</td>
+      <td>3.216</td>
+      <td>5.078</td>
+      <td>22.00</td>
+      <td>20.93</td>
+      <td>17.75</td>
+      <td>16.77</td>
+      <td>16.49</td>
+      <td>18.03</td>
+      <td>26.17</td>
+      <td>18.56</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
       <td colspan="18" style="text-align: center; font-weight: bold;">Adapter rendering methods</td>
     </tr>
     <tr>
