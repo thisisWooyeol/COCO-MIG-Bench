@@ -56,6 +56,46 @@ We additionally reported time and VRAM usage for each method in float32 precisio
       <td>-</td>
     </tr>
     <tr>
+      <td><a>SD2.1</a></td>
+      <td>SD2.1</td>
+      <td>6.875</td>
+      <td>4.453</td>
+      <td>2.363</td>
+      <td>2.547</td>
+      <td>2.461</td>
+      <td>3.203</td>
+      <td>19.77</td>
+      <td>17.93</td>
+      <td>15.54</td>
+      <td>14.86</td>
+      <td>16.32</td>
+      <td>16.38</td>
+      <td>24.86</td>
+      <td>18.20</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><a>SD2.1+HCG</a></td>
+      <td>SD2.1</td>
+      <td><b style="color: green;">26.52</b></td>
+      <td><b style="color: green;">25.76</b></td>
+      <td><b style="color: green;">20.94</b></td>
+      <td><b style="color: green;">18.83</b></td>
+      <td><b style="color: green;">18.78</b></td>
+      <td><b style="color: green;">21.04</b></td>
+      <td><b style="color: green;">31.18</b></td>
+      <td><b style="color: green;">30.50</b></td>
+      <td><b style="color: green;">27.24</b></td>
+      <td><b style="color: green;">24.77</b></td>
+      <td><b style="color: green;">25.31</b></td>
+      <td><b style="color: green;">26.93</b></td>
+      <td><b style="color: green;">24.89</b></td>
+      <td><b style="color: green;">19.96</b></td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
       <td><a>SDXL</a></td>
       <td>SDXL</td>
       <td>5.586</td>
