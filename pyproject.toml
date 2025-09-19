@@ -22,7 +22,6 @@ torch =  { index = "pytorch_cu124" }
 [[tool.uv.index]]
 name = "pytorch_cu124"
 url = "https://download.pytorch.org/whl/cu124"
-explicit = true
 
 
 
