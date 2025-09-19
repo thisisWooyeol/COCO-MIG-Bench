@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-run_migbench_eval = "run_migbench:main"
+run_migbench_eval = "migbench.run_migbench:main"
 
 
 [tool.uv.sources]
@@ -34,3 +34,5 @@ target-version = "py312"
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["src"]
