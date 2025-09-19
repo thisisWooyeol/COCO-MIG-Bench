@@ -12,8 +12,9 @@ dependencies = [
     "torchvision==0.21.0",
 ]
 
-[tool.uv]
-package = false
+[project.scripts]
+run_migbench_eval = "run_migbench:main"
+
 
 [tool.uv.sources]
 torch =  { index = "pytorch_cu124" }

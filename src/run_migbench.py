@@ -6,6 +6,7 @@ import argparse
 import json
 import logging
 import re
+import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -201,8 +202,21 @@ class MIGBenchEvaluator:
         logger.info("Initializing models...")
 
         # GroundingDINO
+
         grounding_dino_config = str(Path(groundingdino.__file__).parent / "config" / "GroundingDINO_SwinT_OGC.py")
-        grounding_dino_checkpoint = "./pretrained/groundingdino_swint_ogc.pth"
+        grounding_dino_checkpoint = str(Path(__file__).parent / "pretrained" / "groundingdino_swint_ogc.pth")
+
+        # If checkpoint does not exist, download it
+        if not os.path.exists(grounding_dino_checkpoint):
+            os.makedirs(os.path.dirname(grounding_dino_checkpoint), exist_ok=True)
+
+            url = "https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth"
+            logger.info(f"Downloading GroundingDINO checkpoint from {url}...")
+            urllib.request.urlretrieve(url, grounding_dino_checkpoint)
+            logger.info("Download completed.")
+        else:
+            logger.info("Using cached GroundingDINO checkpoint...")
+
         self.grounding_dino_model = Model(
             model_config_path=grounding_dino_config,
             model_checkpoint_path=grounding_dino_checkpoint,
@@ -672,7 +686,7 @@ class MIGBenchEvaluator:
 
 def main():
     """Main function to run MIG Bench evaluation"""
-    parser = argparse.ArgumentParser(description="MIG Bench Evaluation using Original GroundingDINO + Transformers SAM")
+    parser = argparse.ArgumentParser(description="MIG Bench Evaluation using GroundingDINO + SAM")
     parser.add_argument("--image_dir", type=str, required=True, help="Path to generated image files")
     parser.add_argument("--metric_name", type=str, required=True, help="Name for the metric results")
     parser.add_argument("--need_clip_score", action="store_true", help="Calculate CLIP score")
@@ -682,12 +696,16 @@ def main():
     parser.add_argument("--need_miou_score", action="store_true", help="Calculate mIoU score")
     parser.add_argument("--miou_threshold", type=float, default=0.5, help="IoU threshold for success")
     parser.add_argument(
-        "--bench_file_path", type=str, default="./data/mig_bench.jsonl", help="Path to benchmark JSONL file"
+        "--bench_file_path",
+        type=str,
+        default=f"{str(Path(__file__).parent)}/data/mig_bench.jsonl",
+        help="Path to benchmark JSONL file",
     )
     parser.add_argument("--num_iters", type=int, default=8, help="Number of iterations per prompt")
     parser.add_argument(
         "--log_level", choices=["debug", "info", "warning", "error"], default="info", help="Logging level"
     )
+    parser.add_argument("--output_dir", type=str, default="./output", help="Directory to save output results")
 
     args = parser.parse_args()
 
@@ -712,7 +730,7 @@ def main():
             print(f"{key}: {value}")
 
     # Save results to file
-    output_dir = "./output"
+    output_dir = args.output_dir
     os.makedirs(output_dir, exist_ok=True)
     output_file = f"{output_dir}/metric_{args.metric_name}.json"
     with open(output_file, "w") as f:

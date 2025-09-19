@@ -214,6 +214,6 @@ pyrightconfig.json
 uv.lock
 
 # Additional ignoring for large files
-/pretrained
+pretrained/
 output/
 example/
