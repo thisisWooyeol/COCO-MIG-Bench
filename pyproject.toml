@@ -2,7 +2,7 @@
 name = "migbench"
 description = "The MIG benchmark of CVPR2024 MIGC: Multi-Instance Generation Controller for Text-to-Image Synthesis"
 version = "0.1.0"
-requires-python = "==3.12.*"
+requires-python = ">=3.11"
 maintainers = [
     { name = "Wooyeol Lee", email = "wooyeol0519@snu.ac.kr" }
 ]
@@ -27,7 +27,7 @@ url = "https://download.pytorch.org/whl/cu124"
 
 [tool.ruff]
 line-length = 120
-target-version = "py312"
+target-version = "py311"
 
 
 [build-system]
